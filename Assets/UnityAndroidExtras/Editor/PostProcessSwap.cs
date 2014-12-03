@@ -4,20 +4,21 @@ using UnityEditor.Callbacks;
 using System.IO;
 
 public class PostProcessSwap : Editor {
-
+	
 	[PostProcessBuild]
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
-		if(target == BuildTarget.Android )
+		
+		if(target == BuildTarget.Android && EditorPrefs.GetBool("SWAP",true) )
 		{
 			string bundle = PlayerSettings.bundleIdentifier;
 			bundle = bundle.Replace(".","/");
-//			Debug.Log(bundle);
-
+			//			Debug.Log(bundle);
+			
 			string copyDirJava = string.Empty;
 			string copyDirXml = string.Empty;
 			string copyDirRoot = pathToBuiltProject+"/"+PlayerSettings.productName;
-//			Debug.Log("path "+ copyDirRoot );
-
+			//			Debug.Log("path "+ copyDirRoot );
+			
 			//Files to copy
 			DirectoryInfo copyDirectoryInfo = new DirectoryInfo("Assets/UnityAndroidExtras/Editor/Files");
 			//Root folder to put files in
@@ -56,8 +57,28 @@ public class PostProcessSwap : Editor {
 			}
 			else 
 			{
-				Debug.LogWarning("You have to export as google android project for this project to work!");
+				Debug.LogWarning("You have to export as google android project!");
 			}
 		}
+	}
+	[MenuItem("AndroidPluginSwap/Enable")]
+	public static void enableSwap()
+	{
+		EditorPrefs.SetBool("SWAP",true);
+	}
+	[MenuItem("AndroidPluginSwap/Enable",true)]
+	public static bool ValidateenableSwap()
+	{
+		return !EditorPrefs.GetBool("SWAP",true);
+	}
+	[MenuItem("AndroidPluginSwap/Disable")]
+	public static void disenableSwap()
+	{
+		EditorPrefs.SetBool("SWAP",false);
+	}
+	[MenuItem("AndroidPluginSwap/Disable",true)]
+	public static bool  ValidatedisenableSwap()
+	{
+		return EditorPrefs.GetBool("SWAP",true);
 	}
 }

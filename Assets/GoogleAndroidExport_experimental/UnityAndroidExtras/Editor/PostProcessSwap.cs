@@ -8,7 +8,7 @@ public class PostProcessSwap : Editor {
 	[PostProcessBuild]
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
 		
-		if(target == BuildTarget.Android && EditorPrefs.GetBool("SWAP",true) )
+		if(target == BuildTarget.Android && EditorPrefs.GetBool("SWAP",false) )
 		{
 			string bundle = PlayerSettings.bundleIdentifier;
 			bundle = bundle.Replace(".","/");
@@ -69,7 +69,7 @@ public class PostProcessSwap : Editor {
 	[MenuItem("AndroidPluginSwap/Enable",true)]
 	public static bool ValidateenableSwap()
 	{
-		return !EditorPrefs.GetBool("SWAP",true);
+		return !EditorPrefs.GetBool("SWAP",false);
 	}
 	[MenuItem("AndroidPluginSwap/Disable")]
 	public static void disenableSwap()
@@ -79,6 +79,6 @@ public class PostProcessSwap : Editor {
 	[MenuItem("AndroidPluginSwap/Disable",true)]
 	public static bool  ValidatedisenableSwap()
 	{
-		return EditorPrefs.GetBool("SWAP",true);
+		return EditorPrefs.GetBool("SWAP",false);
 	}
 }

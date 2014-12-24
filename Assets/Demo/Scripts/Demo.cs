@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestBuildRun : MonoBehaviour {
+public class Demo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

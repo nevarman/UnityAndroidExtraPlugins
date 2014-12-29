@@ -20,7 +20,7 @@ public class PostProcessSwap : Editor {
 			//			Debug.Log("path "+ copyDirRoot );
 			
 			//Files to copy
-			DirectoryInfo copyDirectoryInfo = new DirectoryInfo("Assets/UnityAndroidExtras/Editor/Files");
+			DirectoryInfo copyDirectoryInfo = new DirectoryInfo("Assets/GoogleAndroidExport_experimental/UnityAndroidExtras/Editor/Files");
 			//Root folder to put files in
 			if(Directory.Exists(copyDirRoot))
 			{

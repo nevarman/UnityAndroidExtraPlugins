@@ -7,6 +7,7 @@ This project contains ;
 - Showing Alert view.
 - Facebook and Twitter sharing and also a share intent.
 - And immersive mode code for the phones that supports it.
+- Webview for android.
 
 for Unity3D Android.
 

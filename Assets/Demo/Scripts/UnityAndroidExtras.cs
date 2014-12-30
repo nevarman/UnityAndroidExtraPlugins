@@ -70,4 +70,22 @@ public class UnityAndroidExtras : MonoBehaviour {
 		jo.Call("setImmersiveMode");
 		#endif
 	}
+	public void openWebView(string url,string gameObjectName)
+	{
+		#if !DEBUGMODE && UNITY_ANDROID
+		jo.Call("openWebView",url,gameObjectName);
+		#endif
+	}
+	public void openWebView(string url,string gameObjectName,int marginLeft,int marginTop, int marginRight,int marginBottom)
+	{
+		#if !DEBUGMODE && UNITY_ANDROID
+		jo.Call("openWebView",url,gameObjectName,marginLeft,marginTop,marginRight,marginBottom);
+		#endif
+	}
+	public void closeWebView()
+	{
+		#if !DEBUGMODE && UNITY_ANDROID
+		jo.Call("closeWebView");
+		#endif
+	}
 }

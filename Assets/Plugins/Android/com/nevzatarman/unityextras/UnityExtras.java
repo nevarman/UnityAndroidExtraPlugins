@@ -55,17 +55,41 @@ public class UnityExtras {
 		a.startActivity(sharingIntent);
 	}
 
-	public void alert(final String message) {
+	public void alert(final String message,final String buttonText,final String gameObject) {
 		final Activity a = UnityPlayer.currentActivity;
 		a.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				AlertDialog.Builder bld = new AlertDialog.Builder(a);
 				bld.setMessage(message);
-				bld.setNeutralButton("Ok", new OnClickListener() {
+				bld.setNeutralButton(buttonText, new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
+						UnityPlayer.UnitySendMessage(gameObject, "onAlertButtonClicked", "neutralButton");
+					}
+				});
+				bld.create().show();
+			}
+		});
+	}
+	public void alert(final String message,final String buttonText,final String negativeButtonText,final String gameObject) {
+		final Activity a = UnityPlayer.currentActivity;
+		a.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				AlertDialog.Builder bld = new AlertDialog.Builder(a);
+				bld.setMessage(message);
+				bld.setNeutralButton(buttonText, new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						UnityPlayer.UnitySendMessage(gameObject, "onAlertButtonClicked", "neutralButton");
+					}
+				});
+				bld.setNegativeButton(negativeButtonText, new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						UnityPlayer.UnitySendMessage(gameObject, "onAlertNegativeButtonClicked", "negativeButton");
 					}
 				});
 				bld.create().show();

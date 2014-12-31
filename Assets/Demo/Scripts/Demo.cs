@@ -4,6 +4,7 @@ using System.Collections;
 public class Demo : MonoBehaviour {
 	public string url = "http://www.nevzatarman.com";
 	public int marginLeft,marginTop,marginRight,marginBottom;
+	public string appBundle = "twitter";
 
 	// Listen for the events
 	void OnEnable()
@@ -46,7 +47,7 @@ public class Demo : MonoBehaviour {
 		}
 		if(GUI.Button(new Rect(10,130,100,50),"Make Toast"))
 		{
-			UnityAndroidExtras.instance.makeToast("Toast!");
+			UnityAndroidExtras.instance.makeToast("Toast!",1);
 		}
 		if(GUI.Button(new Rect(10,190,100,50),"Alert"))
 		{
@@ -71,6 +72,17 @@ public class Demo : MonoBehaviour {
 		if(GUI.Button(new Rect(230,10,200,50),"Alert with negative button"))
 		{
 			UnityAndroidExtras.instance.alert("Alert!","Ok","Cancel");
+		}
+		if(GUI.Button(new Rect(230,70,200,50),"Is Application Installed"))
+		{
+			if(UnityAndroidExtras.instance.isApplicationIstalled(appBundle))
+				UnityAndroidExtras.instance.makeToast("Yes",0);
+			else 
+				UnityAndroidExtras.instance.makeToast("No",0);
+		}
+		if(GUI.Button(new Rect(230,130,200,50),"Open Application"))
+		{
+			UnityAndroidExtras.instance.openApplication(appBundle);
 		}
 	}
 

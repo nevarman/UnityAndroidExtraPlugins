@@ -32,17 +32,7 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public delegate void OnAlertViewNegButtonClicked();
 	public static event OnAlertViewNegButtonClicked onAlertViewNegativeButtonClicked;
 
-
-	#if !DEBUGMODE && UNITY_ANDROID
-	AndroidJavaObject jo =null;
-	#endif
-
-	// Use this for initialization
-	void Start () {
-		#if !DEBUGMODE && UNITY_ANDROID
-		jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras");
-		#endif
-	}
+	
 	public void Init(){}
 
 	/// <summary>
@@ -52,7 +42,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void shareOnFacebook(string fbLink)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("shareOnFacebook",fbLink);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("shareOnFacebook",fbLink);
 		#endif
 	}
 	/// <summary>
@@ -63,7 +54,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void shareOnTwitter(string message,string fallBackUrl)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("shareOnTwitter",message,fallBackUrl);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("shareOnTwitter",message,fallBackUrl);
 		#endif
 	}
 	/// <summary>
@@ -74,7 +66,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void makeToast(string toast,int length)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("makeToast",toast,length);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("makeToast",toast,length);
 		#endif
 	}
 	/// <summary>
@@ -85,7 +78,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void alert(string message,string neutralButtonText)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("alert",message,neutralButtonText,gameObject.name);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("alert",message,neutralButtonText,gameObject.name);
 		#endif
 	}
 	/// <summary>
@@ -97,7 +91,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void alert(string message,string neutralButtonText,string negativeButtonText)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("alert",message,neutralButtonText,negativeButtonText,gameObject.name);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("alert",message,neutralButtonText,negativeButtonText,gameObject.name);
 		#endif
 	}
 	/// <summary>
@@ -107,7 +102,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void openShareIntent(string message)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("openShareIntent",message);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("openShareIntent",message);
 		#endif
 	}
 	/// <summary>
@@ -116,7 +112,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void setImmersiveMode()
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("setImmersiveMode");
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("setImmersiveMode");
 		#endif
 	}
 	/// <summary>
@@ -126,7 +123,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void openWebView(string url)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("openWebView",url,gameObject.name);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("openWebView",url,gameObject.name);
 		#endif
 	}
 	/// <summary>
@@ -140,7 +138,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void openWebView(string url,int marginLeft,int marginTop, int marginRight,int marginBottom)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("openWebView",url,gameObject.name,marginLeft,marginTop,marginRight,marginBottom);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("openWebView",url,gameObject.name,marginLeft,marginTop,marginRight,marginBottom);
 		#endif
 	}
 	/// <summary>
@@ -149,7 +148,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void closeWebView()
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("closeWebView");
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("closeWebView");
 		#endif
 	}
 	/// <summary>
@@ -160,7 +160,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public bool isApplicationIstalled(string bundleName)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		return jo.Call<bool>("isApplicationInstalled",bundleName);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			return jo.Call<bool>("isApplicationInstalled",bundleName);
 		#endif
 	}
 	/// <summary>
@@ -170,7 +171,8 @@ public class UnityAndroidExtras : MonoBehaviour,IWebViewListener,IAlertViewListe
 	public void openApplication(string bundleName)
 	{
 		#if !DEBUGMODE && UNITY_ANDROID
-		jo.Call("openApplication",bundleName);
+		using(AndroidJavaObject jo =  new AndroidJavaObject("com.nevzatarman.unityextras.UnityExtras"))
+			jo.Call("openApplication",bundleName);
 		#endif
 	}
 	#region IWebViewListener implementation
